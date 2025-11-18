@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <div class="service-desc">Professional washing and careful folding for your everyday clothes.</div>
         </div>
         <div class="service-card">
-            <span class="service-icon"><i class="fas fa-iron"></i></span>
+            <span class="service-icon"><i class="fas fa-shirt"></i></span>
             <div class="service-title">Ironing</div>
             <div class="service-desc">Expert ironing for crisp, wrinkle-free garments.</div>
         </div>
