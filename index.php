@@ -26,8 +26,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="shops">
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="bubblebox.png" class="photo-link">
-                        <img src="bubblebox.png" alt="Daily BubbleBox Laundry Hub">
+                    <a href="./bubblebox.png" class="photo-link">
+                        <img src="./bubblebox.png" alt="Daily BubbleBox Laundry Hub">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.8</div>
                 </div>
@@ -37,18 +37,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Poblacion, Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.8 (124 reviews)</span>
-                    </div>
                     <p>Complete laundry services with free pickup and delivery within Poblacion area.</p>
                     <a href="shop1.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="Lava.jpg" class="photo-link">
-                        <img src="Lava.jpg" alt="Lava'z Laundry Shop">
+                    <a href="./Lava.jpg" class="photo-link">
+                        <img src="./Lava.jpg" alt="Lava'z Laundry Shop">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.5</div>
                 </div>
@@ -58,18 +54,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>P-4, Falcon St., Magosilom, Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.5 (89 reviews)</span>
-                    </div>
                     <p>Offering wash, dry, and fold services with eco-friendly detergents.</p>
                     <a href="shop2.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="fluff.png" class="photo-link">
-                        <img src="fluff.png" alt="Fluff'n Fold Express Laundry Shop">
+                    <a href="./fluff.png" class="photo-link">
+                        <img src="./fluff.png" alt="Fluff'n Fold Express Laundry Shop">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.7</div>
                 </div>
@@ -79,18 +71,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Purok-2 magosilom, Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.7 (102 reviews)</span>
-                    </div>
                     <p>Specializing in dry cleaning and delicate fabric care.</p>
                     <a href="shop3.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="Methsuliah.png" class="photo-link">
-                        <img src="Methsuliah.png" alt="Methusilah's Laundry Shop">
+                    <a href="./Methsuliah.png" class="photo-link">
+                        <img src="./Methsuliah.png" alt="Methusilah's Laundry Shop">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.3</div>
                 </div>
@@ -100,18 +88,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Purok-5, Sitio Tapa, Brgy. San Pedro, Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.3 (76 reviews)</span>
-                    </div>
                     <p>Express laundry service with 3-hour turnaround available.</p>
                     <a href="shop4.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="EP.jpg" class="photo-link">
-                        <img src="EP.jpg" alt="EP Laundry Shop">
+                    <a href="./EP.jpg" class="photo-link">
+                        <img src="./EP.jpg" alt="EP Laundry Shop">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.6</div>
                 </div>
@@ -121,18 +105,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Urbiztondo St., Purok 3 Magosilom, Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.6 (98 reviews)</span>
-                    </div>
                     <p>Professional washing and ironing services with pickup available.</p>
                     <a href="shop5.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="Frankie.png" class="photo-link">
-                        <img src="Frankie.png" alt="Frankie Laundry Shop">
+                    <a href="./Frankie.png" class="photo-link">
+                        <img src="./Frankie.png" alt="Frankie Laundry Shop">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.9</div>
                 </div>
@@ -142,18 +122,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Orillaneda St., Purok-3, Lininti-an Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.9 (135 reviews)</span>
-                    </div>
                     <p>Environmentally friendly laundry using hypoallergenic detergents.</p>
                     <a href="shop6.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="wash.png" class="photo-link">
-                        <img src="wash.png" alt="Eco Clean Laundry">
+                    <a href="./wash.png" class="photo-link">
+                        <img src="./wash.png" alt="Eco Clean Laundry">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.4</div>
                 </div>
@@ -163,18 +139,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Magosilom, Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.4 (125 reviews)</span>
-                    </div>
                     <p>Your affordable laundry shop in Cantilan.</p>
                     <a href="shop7.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="washerman.png" class="photo-link">
-                        <img src="washerman.png" alt="Eco Clean Laundry">
+                    <a href="./washerman.png" class="photo-link">
+                        <img src="./washerman.png" alt="Eco Clean Laundry">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.6</div>
                 </div>
@@ -184,18 +156,14 @@ if (session_status() === PHP_SESSION_NONE) {
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Pag-antayan, Cantilan</span>
                     </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.6 (50 reviews)</span>
-                    </div>
                     <p>Experience the ultimate convenience with Washerman Laundry Shop! We offer fast, reliable wash-and-fold services designed to save you time and hassle.</p>
                     <a href="shop8.php" class="btn">View Details</a>
                 </div>
             </div>
             <div class="shop-card">
                 <div class="shop-img">
-                    <a href="everybody.png" class="photo-link">
-                        <img src="everybody.png" alt="Eco Clean Laundry">
+                    <a href="./everybody.png" class="photo-link">
+                        <img src="./everybody.png" alt="Eco Clean Laundry">
                     </a>
                     <div class="rating-badge"><i class="fas fa-star"></i> 4.1</div>
                 </div>
@@ -204,10 +172,6 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="shop-info">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Calagdaan, Cantilan</span>
-                    </div>
-                    <div class="shop-info">
-                        <i class="fas fa-star rating"></i>
-                        <span>4.1 (34 reviews)</span>
                     </div>
                     <p>From delicate garments to everyday wear, our professional team provides meticulous washing, drying, and expert folding, using premium detergents and conditioners.</p>
                     <a href="shop9.php" class="btn">View Details</a>
