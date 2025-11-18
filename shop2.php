@@ -11,8 +11,8 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <a href="Lava.jpg" class="photo-link">
-            <img src="Lava.jpg" alt="Lava'z Laundry Hub" class="shop-detail-img">
+        <a href="./Lava.jpg" class="photo-link">
+            <img src="./Lava.jpg" alt="Lava'z Laundry Hub" class="shop-detail-img">
         </a>
         <div class="shop-detail-info">
             <h2>Lava'z Laundry Hub</h2>
@@ -59,7 +59,8 @@
     <section class="shop-photos">
         <h3>Shop Photos</h3>
         <div class="photos-row">
-            <!-- photos -->
+            <a href="./shop2.1.jpg" class="photo-link"><img src="./shop2.1.jpg" alt="Shop Interior"></a>
+            <a href="./shop2.2.jpg" class="photo-link"><img src="./shop2.2.jpg" alt="Machines"></a>
         </div>
     </section>
     <div class="shop-actions">
