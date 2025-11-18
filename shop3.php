@@ -39,7 +39,29 @@
                 <td>Standard clothes (min 5kg, max 8kg)</td>
                 <td>₱35/kg</td>
             </tr>
+            <tr>
+                <td>Dry Cleaning</td>
+                <td>Delicate fabrics (per item)</td>
+                <td>₱190/item</td>
+            </tr>
+            <tr>
+                <td>Mattress Cleaning</td>
+                <td>Foam, blankets, comforters</td>
+                <td>₱260/mattress</td>
+            </tr>
+            <tr>
+                <td>Ironing</td>
+                <td>Iron only, per kg</td>
+                <td>₱28/kg</td>
+            </tr>
         </table>
+    </section>
+    <section class="shop-photos">
+        <h3>Shop Photos</h3>
+        <div class="photos-row">
+            <a href="./shop3.1.webp" class="photo-link"><img src="./shop3.1.webp" alt="Shop Interior"></a>
+            <a href="./shop3.2.jpg" class="photo-link"><img src="./shop3.2.jpg" alt="Machines"></a>
+        </div>
     </section>
     <div class="shop-actions">
         <button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button>

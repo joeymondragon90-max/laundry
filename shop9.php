@@ -56,6 +56,13 @@
             </tr>
         </table>
     </section>
+    <section class="shop-photos">
+        <h3>Shop Photos</h3>
+        <div class="photos-row">
+            <a href="./shop1.1.jpg" class="photo-link"><img src="./shop1.1.jpg" alt="Shop Interior"></a>
+            <a href="./shop1.2.jpg" class="photo-link"><img src="./shop1.2.jpg" alt="Machines"></a>
+        </div>
+    </section>
     <div class="shop-actions">
         <button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button>
         <a href="orderform.php?shop=Everybody%20Laundry%20Shop&return=shop9.php"><button class="btn" id="orderBtn"><i class="fas fa-shopping-cart"></i> Order Now</button></a>
