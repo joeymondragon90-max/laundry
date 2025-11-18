@@ -52,7 +52,7 @@ $user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
                         </div>
                         <div class="profile-menu-divider"></div>
                         <?php if ($user_role === 'customer'): ?>
-                        <a href="customer_orders.php" class="profile-menu-item">
+                        <a href="order_tracking.php" class="profile-menu-item">
                             <i class="fas fa-shopping-bag"></i>
                             <span>My Orders</span>
                         </a>
