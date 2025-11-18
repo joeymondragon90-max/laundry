@@ -19,7 +19,14 @@ if (session_status() === PHP_SESSION_NONE) {
         <div class="container">
             <h2>Find Laundry Shops in Cantilan</h2>
             <p>Discover the best laundry services near you. Compare prices, services, and locations.</p>
-            <a href="#shops" class="btn">Explore Shops</a>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 30px 0;">
+                <a href="search.php" class="btn" style="background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: white;">
+                    <i class="fas fa-search"></i> Advanced Search
+                </a>
+                <a href="#shops" class="btn">
+                    <i class="fas fa-arrow-down"></i> Browse Shops
+                </a>
+            </div>
         </div>
     </section>
     <section class="container" id="shops">
