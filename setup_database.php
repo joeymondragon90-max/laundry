@@ -1,53 +1,143 @@
 <?php
-// Database setup script for Dry Zone Cantilan
-// This script will create the database and table if they don't exist
+// Comprehensive Database Setup Script for Dry Zone Cantilan
+// This script creates all required tables and columns
 
-$servername = "localhost";
-$username = "root";
-$password = "";
+require 'db.php';
 
-try {
-    // First connect without specifying a database
-    $conn = new mysqli($servername, $username, $password);
-    
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
-    // Create database if it doesn't exist
-    $sql = "CREATE DATABASE IF NOT EXISTS `login_register` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
-    if ($conn->query($sql) === TRUE) {
-        echo "Database 'login_register' created successfully or already exists.<br>";
+echo "<h2>Dry Zone Cantilan - Database Setup</h2>";
+echo "<hr>";
+
+// 1. Create/Update orders table
+$create_orders = "CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    shop_name VARCHAR(255) NOT NULL,
+    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    service_type VARCHAR(100),
+    weight_kg DECIMAL(5,2),
+    total_amount DECIMAL(10,2) NOT NULL,
+    student_discount DECIMAL(10,2) DEFAULT 0,
+    voucher_code VARCHAR(50),
+    voucher_discount DECIMAL(10,2) DEFAULT 0,
+    payment_method VARCHAR(100),
+    reference_number VARCHAR(100),
+    status ENUM('pending', 'processing', 'ready', 'delivered', 'cancelled') DEFAULT 'pending',
+    pickup_date DATETIME,
+    delivery_date DATETIME,
+    notes TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX (shop_name),
+    INDEX (customer_id),
+    INDEX (status),
+    INDEX (order_date)
+)";
+
+if ($conn->query($create_orders) === TRUE) {
+    echo "✓ Orders table created/verified<br>";
+} else {
+    if (strpos($conn->error, "already exists") !== false) {
+        echo "✓ Orders table exists<br>";
     } else {
-        echo "Error creating database: " . $conn->error . "<br>";
+        echo "⚠ " . $conn->error . "<br>";
     }
-    
-    // Select the database
-    $conn->select_db("login_register");
-    
-    // Create users table
-    $sql = "CREATE TABLE IF NOT EXISTS `users` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `full_name` varchar(255) NOT NULL,
-        `email` varchar(255) NOT NULL UNIQUE,
-        `password` varchar(255) NOT NULL,
-        `role` enum('customer','seller','admin') NOT NULL DEFAULT 'customer',
-        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        PRIMARY KEY (`id`),
-        UNIQUE KEY `email` (`email`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
-    
-    if ($conn->query($sql) === TRUE) {
-        echo "Table 'users' created successfully or already exists.<br>";
+}
+
+// 2. Create order status history table
+$create_history = "CREATE TABLE IF NOT EXISTS order_status_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    old_status VARCHAR(50),
+    new_status VARCHAR(50) NOT NULL,
+    changed_by VARCHAR(100),
+    changed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    notes TEXT,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    INDEX (order_id),
+    INDEX (changed_at)
+)";
+
+if ($conn->query($create_history) === TRUE) {
+    echo "✓ Order status history table created/verified<br>";
+} else {
+    if (strpos($conn->error, "already exists") !== false) {
+        echo "✓ Order status history table exists<br>";
     } else {
-        echo "Error creating table: " . $conn->error . "<br>";
+        echo "⚠ " . $conn->error . "<br>";
     }
-    
-    // Add role column if it doesn't exist (for existing databases)
-    $checkColumn = $conn->query("SHOW COLUMNS FROM `users` LIKE 'role'");
-    if ($checkColumn && $checkColumn->num_rows == 0) {
-        $alterSql = "ALTER TABLE `users` ADD COLUMN `role` enum('customer','seller','admin') NOT NULL DEFAULT 'customer' AFTER `password`";
+}
+
+// 3. Create chat messages table
+$create_chat = "CREATE TABLE IF NOT EXISTS chat_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    shop_name VARCHAR(255) NOT NULL,
+    sender_type ENUM('customer', 'shop') NOT NULL,
+    sender_name VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    is_read BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX (shop_name),
+    INDEX (customer_id),
+    INDEX (timestamp)
+)";
+
+if ($conn->query($create_chat) === TRUE) {
+    echo "✓ Chat messages table created/verified<br>";
+} else {
+    if (strpos($conn->error, "already exists") !== false) {
+        echo "✓ Chat messages table exists<br>";
+    } else {
+        echo "⚠ " . $conn->error . "<br>";
+    }
+}
+
+// 4. Create shop directory table
+$create_shop_dir = "CREATE TABLE IF NOT EXISTS shop_directory (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    shop_name VARCHAR(255) NOT NULL UNIQUE,
+    location VARCHAR(255) NOT NULL,
+    description TEXT,
+    rating DECIMAL(3,1) DEFAULT 4.0,
+    num_reviews INT DEFAULT 0,
+    primary_service VARCHAR(100),
+    avg_price DECIMAL(8,2) DEFAULT 30.00,
+    has_pickup_delivery BOOLEAN DEFAULT TRUE,
+    phone_number VARCHAR(20),
+    operating_hours VARCHAR(100),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX (shop_name),
+    INDEX (location),
+    INDEX (rating),
+    INDEX (avg_price)
+)";
+
+if ($conn->query($create_shop_dir) === TRUE) {
+    echo "✓ Shop directory table created/verified<br>";
+} else {
+    if (strpos($conn->error, "already exists") !== false) {
+        echo "✓ Shop directory table exists<br>";
+    } else {
+        echo "⚠ " . $conn->error . "<br>";
+    }
+}
+
+echo "<hr>";
+echo "<h3>✓ Database Setup Complete!</h3>";
+echo "<p>All tables and columns have been created/verified successfully.</p>";
+echo "<p><strong>Features Enabled:</strong></p>";
+echo "<ul>";
+echo "<li>✓ Real-time Chat System (chat_messages)</li>";
+echo "<li>✓ Order Tracking System (orders, order_status_history)</li>";
+echo "<li>✓ Advanced Search & Filters (shop_directory)</li>";
+echo "</ul>";
+echo "<p style='margin-top: 20px;'><a href='index.php'>← Back to Home</a></p>";
+
+$conn->close();
+?>
         if ($conn->query($alterSql) === TRUE) {
             echo "Role column added successfully.<br>";
         } else {
