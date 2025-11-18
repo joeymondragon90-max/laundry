@@ -11,14 +11,14 @@ $user_email = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : '';
 <header>
     <div class="container container-header header-row">
         <div class="logo" style="margin-left:24px;">
-            <a href="Dry Zone Logo.jpg" class="photo-link" id="shopLogoLink">
+            <a href="index.php" class="photo-link" id="shopLogoLink">
                 <img src="Dry Zone Logo.jpg" alt="Dry Zone Cantilan Logo" style="height:64px;width:auto;margin-right:12px;" id="shopLogo">
             </a>
             <h1>Dry Zone - Cantilan</h1>
         </div>
         <div class="nav-flex">
             <ul class="nav-links">
-                <li><a href="overview.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="index.php"><i class="fas fa-home"></i> Home</a></li>
                 <li><a href="location.php"><i class="fas fa-map-marked-alt"></i> Location Map</a></li>
                 <li><a href="services.php"><i class="fas fa-concierge-bell"></i> Services</a></li>
                 <li><a href="about.php"><i class="fas fa-info-circle"></i> About Us</a></li>
