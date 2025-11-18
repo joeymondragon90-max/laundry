@@ -83,9 +83,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $item_count = $num_packs;
     }
     
-    // Insert order into database (including computed total_price)
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, shop_name, customer_name, customer_email, customer_phone, customer_address, services, item_count, urgency, special_instructions, pickup_date, pickup_time, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issssssissssd", $user_id, $shop_name, $customer_name, $customer_email, $customer_phone, $customer_address, $services, $item_count, $urgency, $special_instructions, $pickup_date, $pickup_time, $total_price);
+    // Insert order into database with new schema
+    $weight_kg = ($pricing_mode === 'per_kg') ? floatval($_POST['weight_kg']) : $num_packs * 8;
+    $payment_method = isset($_POST['payment_method']) ? $_POST['payment_method'] : 'not_specified';
+    $student_discount = 0;
+    $voucher_discount = 0;
+    
+    $stmt = $conn->prepare("INSERT INTO orders (customer_id, shop_name, service_type, weight_kg, total_amount, student_discount, voucher_discount, payment_method, pickup_date, delivery_date, notes, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, 'pending')");
+    
+    $notes = "Services: $services | Address: $customer_address | Phone: $customer_phone | Email: $customer_email | Instructions: $special_instructions";
+    $pickup_datetime = $pickup_date . ' ' . $pickup_time;
+    
+    $stmt->bind_param("issddddsss", $user_id, $shop_name, $services, $weight_kg, $total_price, $student_discount, $voucher_discount, $payment_method, $pickup_datetime, $notes);
     
     if ($stmt->execute()) {
         $order_id = $stmt->insert_id;
@@ -95,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'order_id' => $order_id
         ]);
     } else {
-        echo json_encode(['success' => false, 'error' => 'Failed to submit order. Please try again.']);
+        echo json_encode(['success' => false, 'error' => 'Failed to submit order. Error: ' . $stmt->error]);
     }
     
     $stmt->close();
