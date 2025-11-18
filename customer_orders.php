@@ -13,7 +13,7 @@ $user_name = $_SESSION['user_name'];
 $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'customer';
 
 // Get customer orders
-$ordersQuery = "SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC";
+$ordersQuery = "SELECT * FROM orders WHERE customer_id = ? ORDER BY order_date DESC";
 $stmt = $conn->prepare($ordersQuery);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -194,7 +194,7 @@ $orders = $stmt->get_result();
                                 <div>
                                     <div class="order-id">Order #<?php echo $order['id']; ?></div>
                                     <div class="order-date">
-                                        <i class="fas fa-calendar"></i> <?php echo date('F d, Y', strtotime($order['created_at'])); ?>
+                                        <i class="fas fa-calendar"></i> <?php echo date('F d, Y', strtotime($order['order_date'])); ?>
                                     </div>
                                 </div>
                                 <span class="order-status status-<?php echo $order['status']; ?>">
@@ -208,46 +208,41 @@ $orders = $stmt->get_result();
                                     <span class="detail-value"><?php echo htmlspecialchars($order['shop_name']); ?></span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Services</span>
-                                    <div class="services-list">
-                                        <?php 
-                                        $services = explode(', ', $order['services']);
-                                        foreach ($services as $service): 
-                                        ?>
-                                            <span class="service-badge"><?php echo htmlspecialchars($service); ?></span>
-                                        <?php endforeach; ?>
-                                    </div>
+                                    <span class="detail-label">Service Type</span>
+                                    <span class="detail-value"><?php echo htmlspecialchars($order['service_type']); ?></span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Items</span>
-                                    <span class="detail-value"><?php echo $order['item_count']; ?> items</span>
+                                    <span class="detail-label">Weight</span>
+                                    <span class="detail-value"><?php echo $order['weight_kg']; ?> kg</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Urgency</span>
-                                    <span class="detail-value"><?php echo ucfirst($order['urgency']); ?></span>
+                                    <span class="detail-label">Payment Method</span>
+                                    <span class="detail-value"><?php echo htmlspecialchars($order['payment_method']); ?></span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Pickup Date & Time</span>
+                                    <span class="detail-label">Pickup Date</span>
                                     <span class="detail-value">
-                                        <i class="fas fa-calendar-alt"></i> <?php echo date('M d, Y', strtotime($order['pickup_date'])); ?>
-                                        <br>
-                                        <i class="fas fa-clock"></i> <?php echo date('g:i A', strtotime($order['pickup_time'])); ?>
+                                        <i class="fas fa-calendar-alt"></i> <?php echo date('M d, Y g:i A', strtotime($order['pickup_date'])); ?>
                                     </span>
                                 </div>
+                                <?php if ($order['delivery_date']): ?>
                                 <div class="detail-item">
-                                    <span class="detail-label">Address</span>
-                                    <span class="detail-value"><?php echo htmlspecialchars($order['customer_address']); ?></span>
-                                </div>
-                                <?php if (!empty($order['special_instructions'])): ?>
-                                <div class="detail-item">
-                                    <span class="detail-label">Special Instructions</span>
-                                    <span class="detail-value"><?php echo htmlspecialchars($order['special_instructions']); ?></span>
+                                    <span class="detail-label">Delivery Date</span>
+                                    <span class="detail-value">
+                                        <i class="fas fa-truck"></i> <?php echo date('M d, Y g:i A', strtotime($order['delivery_date'])); ?>
+                                    </span>
                                 </div>
                                 <?php endif; ?>
-                                <?php if ($order['total_price']): ?>
+                                <?php if (!empty($order['notes'])): ?>
                                 <div class="detail-item">
-                                    <span class="detail-label">Total Price</span>
-                                    <span class="detail-value" style="font-weight: 700; color: var(--primary);">₱<?php echo number_format($order['total_price'], 2); ?></span>
+                                    <span class="detail-label">Notes</span>
+                                    <span class="detail-value"><?php echo htmlspecialchars($order['notes']); ?></span>
+                                </div>
+                                <?php endif; ?>
+                                <?php if ($order['total_amount']): ?>
+                                <div class="detail-item">
+                                    <span class="detail-label">Total Amount</span>
+                                    <span class="detail-value" style="font-weight: 700; color: var(--primary);">₱<?php echo number_format($order['total_amount'], 2); ?></span>
                                 </div>
                                 <?php endif; ?>
                             </div>
