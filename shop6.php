@@ -11,8 +11,8 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <a href="Frankie.png" class="photo-link">
-            <img src="Frankie.png" alt="Frankie Laundry Shop" class="shop-detail-img">
+        <a href="./Frankie.png" class="photo-link">
+            <img src="./Frankie.png" alt="Frankie Laundry Shop" class="shop-detail-img">
         </a>
         <div class="shop-detail-info">
             <h2>Frankie Laundry Shop</h2>

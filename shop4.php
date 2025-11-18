@@ -11,8 +11,8 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <a href="Methsuliah.png" class="photo-link">
-            <img src="Methsuliah.png" alt="Methusilah's Laundry Shop" class="shop-detail-img">
+        <a href="./Methsuliah.png" class="photo-link">
+            <img src="./Methsuliah.png" alt="Methusilah's Laundry Shop" class="shop-detail-img">
         </a>
         <div class="shop-detail-info">
             <h2>Methusilah's Laundry Shop</h2>

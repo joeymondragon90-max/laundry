@@ -11,8 +11,8 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <a href="bubblebox.png" class="photo-link">
-            <img src="bubblebox.png" alt="Daily BubbleBox Laundry Hub" class="shop-detail-img">
+        <a href="./bubblebox.png" class="photo-link">
+            <img src="./bubblebox.png" alt="Daily BubbleBox Laundry Hub" class="shop-detail-img">
         </a>
         <div class="shop-detail-info">
             <h2>Daily BubbleBox Laundry Hub</h2>

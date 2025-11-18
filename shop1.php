@@ -11,8 +11,8 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <a href="bubblebox.png" class="photo-link">
-            <img src="bubblebox.png" alt="Daily BubbleBox Laundry Hub" class="shop-detail-img">
+        <a href="./bubblebox.png" class="photo-link">
+            <img src="./bubblebox.png" alt="Daily BubbleBox Laundry Hub" class="shop-detail-img">
         </a>
         <div class="shop-detail-info">
             <h2>Daily BubbleBox Laundry Hub</h2>
@@ -59,8 +59,8 @@
     <section class="shop-photos">
         <h3>Shop Photos</h3>
         <div class="photos-row">
-            <a href="shop1.1.jpg" class="photo-link"><img src="shop1.1.jpg" alt="Shop Interior"></a>
-            <a href="shop1.2.jpg" class="photo-link"><img src="shop1.2.jpg" alt="Machines"></a>
+            <a href="./shop1.1.jpg" class="photo-link"><img src="./shop1.1.jpg" alt="Shop Interior"></a>
+            <a href="./shop1.2.jpg" class="photo-link"><img src="./shop1.2.jpg" alt="Machines"></a>
         </div>
     </section>
     <div class="shop-actions">

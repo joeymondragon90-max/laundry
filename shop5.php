@@ -11,8 +11,8 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <a href="EP.jpg" class="photo-link">
-            <img src="EP.jpg" alt="EP Laundry Hub" class="shop-detail-img">
+        <a href="./EP.jpg" class="photo-link">
+            <img src="./EP.jpg" alt="EP Laundry Hub" class="shop-detail-img">
         </a>
         <div class="shop-detail-info">
             <h2>EP Laundry Hub</h2>

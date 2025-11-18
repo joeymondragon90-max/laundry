@@ -11,7 +11,7 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <img src="bubblebox.png" alt="Daily BubbleBox Laundry Hub" class="shop-detail-img">
+        <img src="./bubblebox.png" alt="Daily BubbleBox Laundry Hub" class="shop-detail-img">
         <div class="shop-detail-info">
             <h2>Daily BubbleBox Laundry Hub</h2>
             <div class="shop-info"><i class="fas fa-map-marker-alt"></i> Poblacion, Cantilan</div>

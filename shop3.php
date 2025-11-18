@@ -11,8 +11,8 @@
 <body>
 <main class="shop-detail-container container">
     <div class="shop-detail-header">
-        <a href="fluff.png" class="photo-link">
-            <img src="fluff.png" alt="Fluff N' Fold Express Laundry Shop" class="shop-detail-img">
+        <a href="./fluff.png" class="photo-link">
+            <img src="./fluff.png" alt="Fluff N' Fold Express Laundry Shop" class="shop-detail-img">
         </a>
         <div class="shop-detail-info">
             <h2>Fluff N' Fold Express Laundry Shop</h2>
