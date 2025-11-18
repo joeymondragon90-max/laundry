@@ -64,7 +64,7 @@
         </div>
     </section>
     <div class="shop-actions">
-        <button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button>
+        <a href="chat.php?shop=Methusilah%27s%20Laundry%20Shop"><button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button></a>
         <a href="orderform.php?shop=Methusilah%27s%20Laundry%20Shop&return=shop4.php"><button class="btn" id="orderBtn"><i class="fas fa-shopping-cart"></i> Order Now</button></a>
     </div>
     <?php $shop_name = "Methusilah's Laundry Shop"; include 'reviews_inc.php'; ?>

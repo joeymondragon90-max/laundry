@@ -64,7 +64,7 @@
         </div>
     </section>
     <div class="shop-actions">
-        <button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button>
+        <a href="chat.php?shop=Wash%20%26%20Shine%20Laundry%20Shop"><button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button></a>
         <a href="orderform.php?shop=Wash%20%26%20Shine%20Laundry%20Shop&return=shop7.php"><button class="btn" id="orderBtn"><i class="fas fa-shopping-cart"></i> Order Now</button></a>
     </div>
     <?php $shop_name = 'Wash & Shine Laundry Shop'; include 'reviews_inc.php'; ?>

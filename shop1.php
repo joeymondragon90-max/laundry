@@ -64,7 +64,7 @@
         </div>
     </section>
     <div class="shop-actions">
-        <button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button>
+        <a href="chat.php?shop=Daily%20BubbleBox%20Laundry%20Hub"><button class="btn" id="chatBtn"><i class="fas fa-comments"></i> Chat</button></a>
         <a href="orderform.php?shop=Daily%20BubbleBox%20Laundry%20Hub&return=shop1.php"><button class="btn" id="orderBtn"><i class="fas fa-shopping-cart"></i> Order Now</button></a>
     </div>
     <?php $shop_name = 'Daily BubbleBox Laundry Hub'; include 'reviews_inc.php'; ?>
