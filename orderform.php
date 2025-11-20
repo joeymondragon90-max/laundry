@@ -26,21 +26,21 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
     <link rel="stylesheet" href="style.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --accent: #3b82f6;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --mid-dark: #1e293b;
-            --medium: #334155;
+            --primary: #53629E;
+            --secondary: #473472;
+            --accent: #87BAC3;
+            --light: #D6F4ED;
+            --dark: #473472;
+            --mid-dark: #53629E;
+            --medium: #87BAC3;
             --warning: #f59e0b;
             --danger: #ef4444;
             --card-bg: #ffffff;
-            --card-accent: #3b82f6;
-            --card-hover: #f0f9ff;
-            --text-light: #475569;
-            --gradient-1: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-            --gradient-2: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            --card-accent: #87BAC3;
+            --card-hover: #D6F4ED;
+            --text-light: #53629E;
+            --gradient-1: linear-gradient(135deg, #473472 0%, #53629E 100%);
+            --gradient-2: linear-gradient(135deg, #53629E 0%, #87BAC3 100%);
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -285,28 +285,28 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
             <h3><i class="fas fa-concierge-bell"></i> Services Needed</h3>
             <div class="service-options">
                 <label class="service-option">
-                    <input type="checkbox" name="services" value="wash">
-                    <i class="fas fa-tint"></i> Washing
+                    <input type="checkbox" name="services" value="wash_fold">
+                    <i class="fas fa-tshirt"></i> Wash & Fold
                 </label>
                 <label class="service-option">
-                    <input type="checkbox" name="services" value="dry">
-                    <i class="fas fa-wind"></i> Drying
+                    <input type="checkbox" name="services" value="dry_clean">
+                    <i class="fas fa-shirt"></i> Dry Cleaning
                 </label>
                 <label class="service-option">
-                    <input type="checkbox" name="services" value="fold">
-                    <i class="fas fa-layer-group"></i> Folding
+                    <input type="checkbox" name="services" value="ironing">
+                    <i class="fas fa-shirt"></i> Ironing/Pressing
                 </label>
                 <label class="service-option">
-                    <input type="checkbox" name="services" value="iron">
-                    <i class="fas fa-fire"></i> Ironing
+                    <input type="checkbox" name="services" value="starch">
+                    <i class="fas fa-spray-can"></i> Starch Service
                 </label>
                 <label class="service-option">
-                    <input type="checkbox" name="services" value="dryclean">
-                    <i class="fas fa-gem"></i> Dry Cleaning
+                    <input type="checkbox" name="services" value="delicate">
+                    <i class="fas fa-feather"></i> Delicate Wear
                 </label>
                 <label class="service-option">
-                    <input type="checkbox" name="services" value="express">
-                    <i class="fas fa-bolt"></i> Express Service
+                    <input type="checkbox" name="services" value="heavy">
+                    <i class="fas fa-layer-group"></i> Heavy Items (Bed Sheets)
                 </label>
             </div>
         </div>
@@ -340,7 +340,7 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
                     </div>
                     <div class="form-group">
                         <label for="pricePerKg">Price per kg (₱) *</label>
-                        <input type="number" id="pricePerKg" name="pricePerKg" min="0" step="0.01" value="33">
+                        <input type="number" id="pricePerKg" name="pricePerKg" min="0" step="0.01" value="30">
                     </div>
                 </div>
             </div>
@@ -354,19 +354,19 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
                     <div class="form-group">
                         <label for="rateType">Rate Type</label>
                         <select id="rateType" name="rateType">
-                            <option value="normal">Normal</option>
-                            <option value="student">Student</option>
+                            <option value="normal">Regular</option>
+                            <option value="student">Student (15% off)</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="pricePer8kg">Price per 8kg pack (₱)</label>
-                        <input type="number" id="pricePer8kg" name="pricePer8kg" min="0" step="0.01" value="180">
+                        <input type="number" id="pricePer8kg" name="pricePer8kg" min="0" step="0.01" value="200">
                     </div>
                     <div class="form-group">
                         <label for="pricePer8kgStudent">Student price per 8kg (₱)</label>
-                        <input type="number" id="pricePer8kgStudent" name="pricePer8kgStudent" min="0" step="0.01" value="140">
+                        <input type="number" id="pricePer8kgStudent" name="pricePer8kgStudent" min="0" step="0.01" value="170">
                     </div>
                 </div>
             </div>
@@ -402,6 +402,27 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
                         <option value="18:00">6:00 PM</option>
                     </select>
                 </div>
+            </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="form-section">
+            <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                <label><input type="radio" name="payment_method" value="cash" checked> Cash on Delivery</label>
+                <label><input type="radio" name="payment_method" value="gcash"> GCash</label>
+                <label><input type="radio" name="payment_method" value="bank"> Bank Transfer</label>
+                <label><input type="radio" name="payment_method" value="card"> Debit/Credit Card</label>
+            </div>
+        </div>
+
+        <!-- Delivery Options -->
+        <div class="form-section">
+            <h3><i class="fas fa-truck"></i> Delivery Options</h3>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                <label><input type="radio" name="delivery_option" value="pickup" checked> Pickup Only</label>
+                <label><input type="radio" name="delivery_option" value="delivery"> Delivery Available</label>
+                <label><input type="radio" name="delivery_option" value="free_delivery"> Free Delivery (₱300+ order)</label>
             </div>
         </div>
 

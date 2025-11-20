@@ -1,7 +1,6 @@
 <?php
 require 'db.php';
 
-// Create shop_directory table for search/filter functionality
 $sql = "CREATE TABLE IF NOT EXISTS shop_directory (
     id INT AUTO_INCREMENT PRIMARY KEY,
     shop_name VARCHAR(255) NOT NULL UNIQUE,
@@ -25,17 +24,16 @@ $sql = "CREATE TABLE IF NOT EXISTS shop_directory (
 if ($conn->query($sql) === TRUE) {
     echo "Shop directory table created successfully!<br><br>";
     
-    // Insert sample shop data
     $shops = [
-        ['Daily BubbleBox Laundry Hub', 'Poblacion, Cantilan', 'Complete laundry services with free pickup and delivery within Poblacion area', 4.8, 124, 'Wash & Fold', 33.00, 1],
-        ["Lava'z Laundry Shop", 'P-4, Falcon St., Magosilom, Cantilan', 'Offering wash, dry, and fold services with eco-friendly detergents', 4.5, 89, 'Eco-Friendly', 30.00, 1],
-        ['Fluff\'n Fold Express Laundry Shop', 'Purok-2 Magosilom, Cantilan', 'Complete laundry services with free pickup and delivery', 4.7, 102, 'Express Service', 35.00, 1],
-        ["Methusilah's Laundry Shop", 'Purok-5, Sitio Tapa, San Pedro, Cantilan', 'Fast, reliable wash-and-fold services', 4.3, 76, 'Wash & Fold', 32.00, 1],
-        ['EP Laundry Shop', 'Lininti-an, Cantilan', 'Professional laundry with premium care', 4.4, 65, 'Dry Cleaning', 32.00, 1],
-        ['Frankie Laundry Shop', 'Orillaneda St., Purok-3, Lininti-an Cantilan', 'Premium laundry services with expert care', 4.9, 135, 'Premium', 33.00, 1],
-        ['Wash & Shine Laundry Shop', 'Magosilom, Cantilan', 'Affordable laundry shop in Cantilan', 4.6, 92, 'Wash & Fold', 33.00, 1],
-        ['Washerman Laundry Shop', 'Pag-antayan, Cantilan', 'Fast, reliable wash-and-fold services', 4.6, 98, 'Wash & Fold', 33.00, 1],
-        ['Everybody Laundry Shop', 'Calagdaan, Cantilan', 'Professional team with meticulous service', 4.1, 54, 'Premium', 50.00, 1]
+        ['Daily BubbleBox Laundry Hub', 'Poblacion, Cantilan', 'Complete laundry services with free pickup and delivery. Specializing in wash & fold and dry cleaning. Open 7AM-6PM daily.', 4.8, 124, 'Wash & Fold', 28.00, 1],
+        ["Lava'z Laundry Shop", 'P-4, Falcon St., Magosilom, Cantilan', 'Eco-friendly laundry using sustainable detergents. Wash & fold specialist with student discounts. Open 8AM-7PM.', 4.5, 89, 'Eco-Friendly', 32.00, 1],
+        ['Fluff\'n Fold Express Laundry Shop', 'Purok-2 Magosilom, Cantilan', 'Express same-day service and heavy items specialist. Free delivery within 2km. Offers ironing and starch service. Open 7AM-8PM.', 4.7, 102, 'Express Service', 35.00, 1],
+        ["Methusilah's Laundry Shop", 'Purok-5, Sitio Tapa, San Pedro, Cantilan', 'Budget-friendly wash-and-fold service. Student discount 20%. Perfect for daily laundry needs. Open 8AM-6PM.', 4.3, 76, 'Budget', 25.00, 1],
+        ['EP Laundry Shop', 'Lininti-an, Cantilan', 'Premium dry cleaning specialist for formal wear and delicate items. Same-day express service available. Open 9AM-5PM.', 4.4, 65, 'Dry Cleaning', 45.00, 1],
+        ['Frankie Laundry Shop', 'Orillaneda St., Purok-3, Lininti-an Cantilan', 'Premium service with expert stain removal and delicate fabric care. Corporate and bulk orders welcome. Open 8AM-6PM.', 4.9, 135, 'Premium', 40.00, 1],
+        ['Wash & Shine Laundry Shop', 'Magosilom, Cantilan', 'Affordable family laundry with heavy items service. Free delivery for orders ₱300+. Bed sheets and curtains specialty. Open 7AM-7PM.', 4.6, 92, 'Family', 30.00, 1],
+        ['Washerman Laundry Shop', 'Pag-antayan, Cantilan', 'Reliable wash-and-fold with quick turnaround. Student-friendly pricing. Quality assured with satisfaction guarantee. Open 8AM-6PM.', 4.6, 98, 'Wash & Fold', 29.00, 1],
+        ['Everybody Laundry Shop', 'Calagdaan, Cantilan', 'Full-service laundry including starch, ironing, and special orders. Bulk discounts available. Open 7AM-8PM daily.', 4.1, 54, 'Full Service', 38.00, 1]
     ];
 
     foreach ($shops as $shop) {
