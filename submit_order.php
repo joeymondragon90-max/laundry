@@ -55,16 +55,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Compute total price based on pricing mode
-    if ($pricing_mode === 'per_kg') {
-        $weight_kg = isset($_POST['weight_kg']) ? floatval($_POST['weight_kg']) : 0;
-        $price_per_kg = isset($_POST['price_per_kg']) ? floatval($_POST['price_per_kg']) : 0;
-        if ($weight_kg <= 0 || $price_per_kg <= 0) {
-            echo json_encode(['success' => false, 'error' => 'Please provide valid weight and price per kg.']);
+    if ($pricing_mode === 'per_item') {
+        $item_count = isset($_POST['itemCount']) ? intval($_POST['itemCount']) : 0;
+        $price_per_item = isset($_POST['pricePerItem']) ? floatval($_POST['pricePerItem']) : 0;
+        if ($item_count <= 0 || $price_per_item <= 0) {
+            echo json_encode(['success' => false, 'error' => 'Please provide valid item count and price per item.']);
             exit();
         }
-        $total_price = round($weight_kg * $price_per_kg, 2);
-        // store a representative item_count (0 for per-kg)
-        $item_count = 0;
+        $base_amount = $item_count * $price_per_item;
+        $weight_kg = $item_count / 5; // Estimate: 5 items per 1kg
     } else {
         // per 8kg pack
         $num_packs = isset($_POST['num_packs']) ? intval($_POST['num_packs']) : 0;
@@ -76,15 +75,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         }
         if ($rate_type === 'student' && $price_per_8kg_student > 0) {
-            $total_price = round($num_packs * $price_per_8kg_student, 2);
+            $base_amount = round($num_packs * $price_per_8kg_student, 2);
         } else {
-            $total_price = round($num_packs * $price_per_8kg, 2);
+            $base_amount = round($num_packs * $price_per_8kg, 2);
         }
-        $item_count = $num_packs;
+        $item_count = $num_packs * 45; // Estimate: 45 items per 8kg pack
+        $weight_kg = $num_packs * 8;
     }
     
+    // Add urgency fee
+    $urgency_fee = 0;
+    if ($urgency === 'urgent') $urgency_fee = 50;
+    if ($urgency === 'express') $urgency_fee = 100;
+    
+    // Calculate delivery fee (free if order >= 300)
+    $delivery_option = isset($_POST['delivery_option']) ? $_POST['delivery_option'] : 'pickup';
+    $delivery_fee = 0;
+    if ($delivery_option === 'delivery' && ($base_amount + $urgency_fee) < 300) {
+        $delivery_fee = 50;
+    }
+    
+    $total_price = round($base_amount + $urgency_fee + $delivery_fee, 2);
+    
     // Insert order into database with new schema
-    $weight_kg = ($pricing_mode === 'per_kg') ? floatval($_POST['weight_kg']) : $num_packs * 8;
     $student_discount = 0;
     $voucher_discount = 0;
     

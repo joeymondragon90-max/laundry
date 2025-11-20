@@ -311,36 +311,38 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
             </div>
         </div>
 
-        <!-- Order Details (per-kilo / pack) -->
+        <!-- Order Details (per-item / pack) -->
         <div class="form-section">
             <h3><i class="fas fa-list"></i> Order Details</h3>
             <div class="form-row">
                 <div class="form-group">
                     <label>Pricing Mode *</label>
                     <div style="display:flex;gap:12px;align-items:center;">
-                        <label><input type="radio" name="pricingMode" value="per_kg" checked> Per Kilo</label>
-                        <label><input type="radio" name="pricingMode" value="per_8kg"> Per 8kg Pack</label>
+                        <label><input type="radio" name="pricingMode" value="per_item" checked> Per Item</label>
+                        <label><input type="radio" name="pricingMode" value="per_8kg"> Per 8kg Pack (approx 40-50 pieces)</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="urgency">Urgency Level</label>
                     <select id="urgency" name="urgency">
-                        <option value="normal">Normal (2-3 days)</option>
-                        <option value="urgent">Urgent (1 day)</option>
-                        <option value="express">Express (Same day)</option>
+                        <option value="normal">Normal (2-3 days) - ₱0</option>
+                        <option value="urgent">Urgent (1 day) - ₱50 extra</option>
+                        <option value="express">Express (Same day) - ₱100 extra</option>
                     </select>
                 </div>
             </div>
 
-            <div id="perKgSection">
+            <div id="perItemSection">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="weightKg">Weight (kg) *</label>
-                        <input type="number" id="weightKg" name="weightKg" min="0.1" step="0.1" value="1">
+                        <label for="itemCount">Number of Items/Pieces *</label>
+                        <input type="number" id="itemCount" name="itemCount" min="1" step="1" value="10" placeholder="e.g., 10 shirts, 5 pants, etc.">
+                        <small style="color: var(--medium); display: block; margin-top: 4px;">Count each piece: shirts, pants, underwear, socks, towels, etc.</small>
                     </div>
                     <div class="form-group">
-                        <label for="pricePerKg">Price per kg (₱) *</label>
-                        <input type="number" id="pricePerKg" name="pricePerKg" min="0" step="0.01" value="30">
+                        <label for="pricePerItem">Price per item (₱) *</label>
+                        <input type="number" id="pricePerItem" name="pricePerItem" min="0" step="0.01" value="8" readonly>
+                        <small style="color: var(--medium); display: block; margin-top: 4px;">Standard rate per piece</small>
                     </div>
                 </div>
             </div>
@@ -350,6 +352,7 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
                     <div class="form-group">
                         <label for="numPacks">Number of 8kg Packs *</label>
                         <input type="number" id="numPacks" name="numPacks" min="1" step="1" value="1">
+                        <small style="color: var(--medium); display: block; margin-top: 4px;">1 pack = approximately 40-50 pieces of clothing</small>
                     </div>
                     <div class="form-group">
                         <label for="rateType">Rate Type</label>
@@ -409,10 +412,10 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
         <div class="form-section">
             <h3><i class="fas fa-truck"></i> Delivery Options</h3>
             <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-                <label><input type="radio" name="delivery_option" value="pickup" checked> Pickup Only</label>
-                <label><input type="radio" name="delivery_option" value="delivery"> Delivery Available</label>
-                <label><input type="radio" name="delivery_option" value="free_delivery"> Free Delivery (₱300+ order)</label>
+                <label><input type="radio" name="delivery_option" value="pickup" checked> Pickup Only (FREE)</label>
+                <label><input type="radio" name="delivery_option" value="delivery"> Delivery (₱50) - Auto FREE if order ≥ ₱300</label>
             </div>
+            <small style="color: var(--medium); display: block; margin-top: 8px;"><i class="fas fa-info-circle"></i> Free delivery automatically applied if total order amount reaches ₱300</small>
         </div>
 
         <!-- Student Status -->
@@ -507,17 +510,31 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
         // Calculate base amount based on pricing mode
         const pricingMode = document.querySelector('input[name="pricingMode"]:checked').value;
         
-        if (pricingMode === 'per_kg') {
-            const weight = parseFloat(document.getElementById('weightKg').value) || 0;
-            const pricePerKg = parseFloat(document.getElementById('pricePerKg').value) || 0;
-            baseAmount = weight * pricePerKg;
+        if (pricingMode === 'per_item') {
+            const itemCount = parseFloat(document.getElementById('itemCount').value) || 0;
+            const pricePerItem = parseFloat(document.getElementById('pricePerItem').value) || 0;
+            baseAmount = itemCount * pricePerItem;
         } else {
             const numPacks = parseFloat(document.getElementById('numPacks').value) || 0;
             const pricePerPack = parseFloat(document.getElementById('pricePer8kg').value) || 0;
             baseAmount = numPacks * pricePerPack;
         }
 
-        // Calculate student discount
+        // Add urgency fee
+        const urgency = document.querySelector('select[name="urgency"]').value;
+        let urgencyFee = 0;
+        if (urgency === 'urgent') urgencyFee = 50;
+        if (urgency === 'express') urgencyFee = 100;
+
+        // Check delivery option
+        const deliveryOption = document.querySelector('input[name="delivery_option"]:checked').value;
+        let deliveryFee = 0;
+        if (deliveryOption === 'delivery') {
+            // Only charge ₱50 if total is less than ₱300
+            deliveryFee = (baseAmount + urgencyFee) >= 300 ? 0 : 50;
+        }
+
+        // Calculate student discount (20% off base amount only)
         const isStudent = document.getElementById('studentStatus').value === 'yes';
         const studentDiscount = isStudent ? (baseAmount * 0.20) : 0;
         
@@ -525,11 +542,11 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
         let voucherDiscount = 0;
         if (appliedVoucher) {
             const discountedAmount = baseAmount - studentDiscount;
-            voucherDiscount = appliedVoucher.discount; // Already calculated in apply function
+            voucherDiscount = appliedVoucher.discount;
         }
 
         // Calculate total
-        const totalAmount = baseAmount - studentDiscount - voucherDiscount;
+        const totalAmount = baseAmount - studentDiscount - voucherDiscount + urgencyFee + deliveryFee;
 
         // Update display
         document.getElementById('baseAmount').textContent = baseAmount.toFixed(2);
@@ -574,10 +591,12 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
 
     // Event listeners for total calculation
     document.getElementById('studentStatus').addEventListener('change', calculateTotals);
-    document.getElementById('weightKg').addEventListener('change', calculateTotals);
-    document.getElementById('pricePerKg').addEventListener('change', calculateTotals);
+    document.getElementById('itemCount').addEventListener('change', calculateTotals);
+    document.getElementById('pricePerItem').addEventListener('change', calculateTotals);
     document.getElementById('numPacks').addEventListener('change', calculateTotals);
     document.getElementById('pricePer8kg').addEventListener('change', calculateTotals);
+    document.querySelector('select[name="urgency"]').addEventListener('change', calculateTotals);
+    document.querySelectorAll('input[name="delivery_option"]').forEach(r => r.addEventListener('change', calculateTotals));
 
     // Service option selection styling
     document.querySelectorAll('.service-option').forEach(option => {
@@ -595,14 +614,14 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
 
     // Pricing mode toggle
     const pricingRadios = document.querySelectorAll('input[name="pricingMode"]');
-    const perKgSection = document.getElementById('perKgSection');
+    const perItemSection = document.getElementById('perItemSection');
     const per8kgSection = document.getElementById('per8kgSection');
     pricingRadios.forEach(r => r.addEventListener('change', function(){
-        if (this.value === 'per_kg') {
-            perKgSection.style.display = '';
+        if (this.value === 'per_item') {
+            perItemSection.style.display = '';
             per8kgSection.style.display = 'none';
         } else {
-            perKgSection.style.display = 'none';
+            perItemSection.style.display = 'none';
             per8kgSection.style.display = '';
         }
         calculateTotals();
