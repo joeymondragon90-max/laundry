@@ -405,17 +405,6 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
             </div>
         </div>
 
-        <!-- Payment Method -->
-        <div class="form-section">
-            <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
-            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-                <label><input type="radio" name="payment_method" value="cash" checked> Cash on Delivery</label>
-                <label><input type="radio" name="payment_method" value="gcash"> GCash</label>
-                <label><input type="radio" name="payment_method" value="bank"> Bank Transfer</label>
-                <label><input type="radio" name="payment_method" value="card"> Debit/Credit Card</label>
-            </div>
-        </div>
-
         <!-- Delivery Options -->
         <div class="form-section">
             <h3><i class="fas fa-truck"></i> Delivery Options</h3>
