@@ -288,6 +288,25 @@ $status_colors = [
         </div>
     </div>
 
+    <!-- Important Notice -->
+    <div style="background: linear-gradient(135deg, #D6F4ED 0%, rgba(135, 186, 195, 0.1) 100%); border-left: 4px solid #87BAC3; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+        <h4 style="margin: 0 0 8px 0; color: #53629E; display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-info-circle"></i> How Your Order Works
+        </h4>
+        <p style="margin: 6px 0; color: #473472; font-size: 0.95rem;">
+            <strong>Step 1:</strong> You placed an estimated order based on item count
+        </p>
+        <p style="margin: 6px 0; color: #473472; font-size: 0.95rem;">
+            <strong>Step 2:</strong> Your laundry will be weighed at our shop during pickup/delivery
+        </p>
+        <p style="margin: 6px 0; color: #473472; font-size: 0.95rem;">
+            <strong>Step 3:</strong> You'll pay the final amount based on actual weight
+        </p>
+        <p style="margin: 12px 0 0 0; color: #87BAC3; font-size: 0.9rem; font-style: italic;">
+            📌 The price shown below is an estimate. Final pricing may vary based on actual weight.
+        </p>
+    </div>
+
     <!-- Shop & Service Info -->
     <div class="detail-section">
         <h3><i class="fas fa-store"></i> Service Details</h3>
@@ -315,10 +334,13 @@ $status_colors = [
 
     <!-- Payment Info -->
     <div class="detail-section">
-        <h3><i class="fas fa-receipt"></i> Payment Details</h3>
+        <h3><i class="fas fa-receipt"></i> Estimated Payment Details</h3>
+        <div style="background: #D6F4ED; border-left: 4px solid #87BAC3; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="margin: 0; color: #473472; font-size: 0.9rem;"><i class="fas fa-info-circle"></i> <strong>This is an estimate.</strong> Your final amount will be confirmed upon pickup/delivery after your laundry is weighed at the shop.</p>
+        </div>
         <div class="detail-grid">
             <div class="detail-item">
-                <div class="detail-label">Base Amount</div>
+                <div class="detail-label">Base Amount (Estimated)</div>
                 <div class="detail-value">₱<?php echo number_format($order['total_amount'] + $order['student_discount'] + $order['voucher_discount'], 2); ?></div>
             </div>
             <?php if ($order['student_discount'] > 0): ?>
@@ -334,19 +356,13 @@ $status_colors = [
                 </div>
             <?php endif; ?>
             <div class="detail-item">
-                <div class="detail-label">Total Amount</div>
-                <div class="detail-value" style="font-size: 1.3rem; color: #2563eb;">₱<?php echo number_format($order['total_amount'], 2); ?></div>
+                <div class="detail-label" style="font-weight: 700; color: #53629E;">Estimated Total Amount</div>
+                <div class="detail-value" style="font-size: 1.3rem; color: #53629E; font-weight: 700;">₱<?php echo number_format($order['total_amount'], 2); ?></div>
             </div>
             <div class="detail-item">
                 <div class="detail-label">Payment Method</div>
-                <div class="detail-value"><?php echo htmlspecialchars($order['payment_method'] ?? 'N/A'); ?></div>
+                <div class="detail-value">Cash on Delivery (Pay when you pick up)</div>
             </div>
-            <?php if ($order['reference_number']): ?>
-                <div class="detail-item">
-                    <div class="detail-label">Reference #</div>
-                    <div class="detail-value"><?php echo htmlspecialchars($order['reference_number']); ?></div>
-                </div>
-            <?php endif; ?>
         </div>
     </div>
 
