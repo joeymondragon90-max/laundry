@@ -368,8 +368,9 @@ $status_info = [
                                     <?php echo $order['weight_kg'] ? $order['weight_kg'] . ' kg' : 'N/A'; ?>
                                 </div>
                                 <div>
-                                    <strong>Total:</strong>
+                                    <strong>Estimated Total:</strong>
                                     ₱<?php echo number_format($order['total_amount'], 2); ?>
+                                    <br><small style="color: #87BAC3; font-size: 0.85rem;"><i class="fas fa-info-circle"></i> Final amount confirmed at pickup/delivery</small>
                                 </div>
                                 <div>
                                     <strong>Date:</strong>

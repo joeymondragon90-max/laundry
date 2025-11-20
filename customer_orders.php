@@ -2,7 +2,6 @@
 session_start();
 require 'db.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -12,7 +11,6 @@ $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'customer';
 
-// Get customer orders
 $ordersQuery = "SELECT * FROM orders WHERE customer_id = ? ORDER BY order_date DESC";
 $stmt = $conn->prepare($ordersQuery);
 $stmt->bind_param("i", $user_id);
@@ -241,8 +239,9 @@ $orders = $stmt->get_result();
                                 <?php endif; ?>
                                 <?php if ($order['total_amount']): ?>
                                 <div class="detail-item">
-                                    <span class="detail-label">Total Amount</span>
+                                    <span class="detail-label">Estimated Amount</span>
                                     <span class="detail-value" style="font-weight: 700; color: var(--primary);">₱<?php echo number_format($order['total_amount'], 2); ?></span>
+                                    <small style="display: block; color: var(--medium); margin-top: 4px;"><i class="fas fa-info-circle"></i> Final amount will be confirmed upon pickup/delivery after weighing</small>
                                 </div>
                                 <?php endif; ?>
                             </div>

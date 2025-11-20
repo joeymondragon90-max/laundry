@@ -84,7 +84,31 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
             border-radius: 16px;
             padding: 40px;
             box-shadow: var(--shadow-lg);
-            border: 1px solid rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(83, 98, 158, 0.1);
+        }
+
+        .pricing-notice {
+            background: #D6F4ED;
+            border-left: 4px solid #87BAC3;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            color: #473472;
+        }
+
+        .pricing-notice h4 {
+            margin: 0 0 8px 0;
+            color: #53629E;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+
+        .pricing-notice p {
+            margin: 4px 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .form-section {
@@ -257,6 +281,15 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
     </div>
 
     <form class="order-form" id="orderForm">
+        <!-- Pricing Notice -->
+        <div class="pricing-notice">
+            <h4><i class="fas fa-info-circle"></i> How Pricing Works</h4>
+            <p><strong>Step 1:</strong> Estimate your laundry items below to get an estimated cost</p>
+            <p><strong>Step 2:</strong> Your laundry will be weighed at the shop upon pickup/delivery</p>
+            <p><strong>Step 3:</strong> You pay the final amount based on actual weight</p>
+            <p style="margin-top: 12px; color: #87BAC3; font-weight: 600;"><i class="fas fa-check-circle"></i> The amount shown below is an estimate only</p>
+        </div>
+
         <!-- Customer Information -->
         <div class="form-section">
             <h3><i class="fas fa-user"></i> Customer Information</h3>
@@ -474,14 +507,17 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
         </div>
 
         <!-- Order Summary -->
-        <div class="form-section" style="background:rgba(37, 99, 235, 0.05);border-radius:12px;padding:20px;border:1px solid rgba(37, 99, 235, 0.1);">
-            <h3><i class="fas fa-receipt"></i> Order Summary</h3>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:0.95rem;">
+        <div class="form-section" style="background:#D6F4ED;border-radius:12px;padding:20px;border:2px solid #87BAC3;">
+            <h3><i class="fas fa-receipt"></i> Estimated Order Cost</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:0.95rem;color:#473472;">
                 <div><strong>Base Amount:</strong> ₱<span id="baseAmount">0.00</span></div>
                 <div><strong>Student Discount:</strong> -₱<span id="studentDiscount">0.00</span></div>
+                <div><strong>Urgency Fee:</strong> +₱<span id="urgencyFee">0.00</span></div>
+                <div><strong>Delivery Fee:</strong> +₱<span id="deliveryFee">0.00</span></div>
                 <div><strong>Voucher Discount:</strong> -₱<span id="voucherDiscount">0.00</span></div>
-                <div style="border-top:2px solid rgba(37,99,235,0.2);padding-top:10px;"><strong style="font-size:1.1rem;color:var(--primary);">Total Amount: ₱<span id="totalAmount">0.00</span></strong></div>
+                <div style="border-top:2px solid #87BAC3;padding-top:10px;grid-column:1/-1;"><strong style="font-size:1.1rem;color:#53629E;">ESTIMATED Total: ₱<span id="totalAmount">0.00</span></strong></div>
             </div>
+            <p style="margin-top:12px;font-size:0.9rem;color:#53629E;"><i class="fas fa-check-circle"></i> Final amount will be calculated based on actual laundry weight at the shop</p>
         </div>
 
         <button type="submit" class="submit-btn">
@@ -551,6 +587,8 @@ if (!preg_match('/^[a-zA-Z0-9_\-\/\.]+$/', $returnUrl)) {
         // Update display
         document.getElementById('baseAmount').textContent = baseAmount.toFixed(2);
         document.getElementById('studentDiscount').textContent = studentDiscount.toFixed(2);
+        document.getElementById('urgencyFee').textContent = urgencyFee.toFixed(2);
+        document.getElementById('deliveryFee').textContent = deliveryFee.toFixed(2);
         document.getElementById('voucherDiscount').textContent = voucherDiscount.toFixed(2);
         document.getElementById('totalAmount').textContent = Math.max(0, totalAmount).toFixed(2);
     }
